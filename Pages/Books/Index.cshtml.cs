@@ -27,7 +27,7 @@ namespace Stoica_Denisa_Lab2.Pages.Books
             {
                 Book = await _context.Book.ToListAsync();
                 Book = await _context.Book
-                    .Include(b => b.Publisher)
+                    .Include(b => b.Publisher).Include(b => b.Author)
                     .ToListAsync();
             }
         }
