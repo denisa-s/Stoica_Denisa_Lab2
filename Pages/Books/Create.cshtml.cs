@@ -45,7 +45,8 @@ namespace Stoica_Denisa_Lab2.Pages.Books
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync(string[] selectedCategories)
         {
-            var newBook = new Book();
+            //var newBook = new Book();
+            var newBook = Book;
             if (selectedCategories != null)
             {
                 newBook.BookCategories = new List<BookCategory>();
@@ -58,7 +59,7 @@ namespace Stoica_Denisa_Lab2.Pages.Books
                     newBook.BookCategories.Add(catToAdd);
                 }
             }
-            if (await TryUpdateModelAsync<Book>(
+            /*if (await TryUpdateModelAsync<Book>(
                 newBook,
                 "Book",
                 i => i.Title, i => i.Author,
@@ -73,12 +74,14 @@ namespace Stoica_Denisa_Lab2.Pages.Books
             if (!ModelState.IsValid)
             {
                 return Page();
-            }
+            }*/
 
-            _context.Book.Add(Book);
+            _context.Book.Add(newBook);
+
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
+            PopulateAssignedCategoryData(_context, newBook);
         }
     }
 }
