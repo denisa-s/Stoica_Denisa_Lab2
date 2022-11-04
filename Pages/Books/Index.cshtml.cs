@@ -32,7 +32,10 @@ namespace Stoica_Denisa_Lab2.Pages.Books
             TitleSort = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
             AuthorSort = String.IsNullOrEmpty(sortOrder) ? "author_desc" : "";
             CurrentFilter = searchString;
-            BookD.Books = await _context.Book.Include(b => b.Publisher).Include(b => b.Author).Include(b => b.BookCategories).ThenInclude(b => b.Category).AsNoTracking().OrderBy(b => b.Title).ToListAsync();
+            BookD.Books = await _context.Book.Include(b => b.Publisher).
+                Include(b => b.Author).Include(b => b.BookCategories).
+                ThenInclude(b => b.Category).AsNoTracking().
+                OrderBy(b => b.Title).ToListAsync();
             if (!String.IsNullOrEmpty(searchString))
             {
                 BookD.Books = BookD.Books.Where(s => s.Author.FirstName.Contains(searchString)
