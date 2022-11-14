@@ -136,7 +136,7 @@ namespace Stoica_Denisa_Lab2.Migrations
             modelBuilder.Entity("Stoica_Denisa_Lab2.Models.Book", b =>
                 {
                     b.HasOne("Stoica_Denisa_Lab2.Models.Author", "Author")
-                        .WithMany()
+                        .WithMany("Books")
                         .HasForeignKey("AuthorID");
 
                     b.HasOne("Stoica_Denisa_Lab2.Models.Publisher", "Publisher")
@@ -165,6 +165,11 @@ namespace Stoica_Denisa_Lab2.Migrations
                     b.Navigation("Book");
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("Stoica_Denisa_Lab2.Models.Author", b =>
+                {
+                    b.Navigation("Books");
                 });
 
             modelBuilder.Entity("Stoica_Denisa_Lab2.Models.Book", b =>
