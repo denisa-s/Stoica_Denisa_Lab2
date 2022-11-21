@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Stoica_Denisa_Lab2.Data;
 using Stoica_Denisa_Lab2.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace Stoica_Denisa_Lab2.Pages.Publishers
 {
+    [Authorize(Roles = "Admin")]
     public class CreateModel : PageModel
     {
         private readonly Stoica_Denisa_Lab2.Data.Stoica_Denisa_Lab2Context _context;

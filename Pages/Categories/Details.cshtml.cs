@@ -10,6 +10,7 @@ using Stoica_Denisa_Lab2.Models;
 
 namespace Stoica_Denisa_Lab2.Pages.Categories
 {
+    [Authorize(Roles = "Admin")]
     public class DetailsModel : PageModel
     {
         private readonly Stoica_Denisa_Lab2.Data.Stoica_Denisa_Lab2Context _context;

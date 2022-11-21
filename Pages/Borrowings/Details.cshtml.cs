@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Stoica_Denisa_Lab2.Data;
 using Stoica_Denisa_Lab2.Models;
@@ -28,7 +29,7 @@ namespace Stoica_Denisa_Lab2.Pages.Borrowings
                 return NotFound();
             }
 
-            var borrowing = await _context.Borrowing.FirstOrDefaultAsync(m => m.ID == id);
+            var borrowing = await _context.Borrowing.Include("Member").Include("Book").FirstOrDefaultAsync(m => m.ID == id);
             if (borrowing == null)
             {
                 return NotFound();
@@ -37,6 +38,8 @@ namespace Stoica_Denisa_Lab2.Pages.Borrowings
             {
                 Borrowing = borrowing;
             }
+            ViewData["MemberID"] = new SelectList(_context.Member, "ID", "FullName");
+            ViewData["BookID"] = new SelectList(_context.Book, "ID", "Title");
             return Page();
         }
     }
