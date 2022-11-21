@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Stoica_Denisa_Lab2.Data;
 using Stoica_Denisa_Lab2.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace Stoica_Denisa_Lab2.Pages.Categories
 {
